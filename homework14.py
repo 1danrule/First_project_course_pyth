@@ -13,6 +13,7 @@ student[outer_dict_key][inner_dict_key]
 
 не забувайте виводити інформаційні повідомлення щодо інформації, яку ви виводите
 """
+from typing import Dict
 
 students = {
     'Іван Петров': {
@@ -44,28 +45,19 @@ students['Дмитро Ковалевський'] = {
     'Середній бал': 91,
 }
 
-# Пункт 2
-for student, student_data in students.items():
-    if student_data['Середній бал'] > 90:
-        print(f"Student: {student} - Average score: {student_data['Середній бал']}")
-
-
-# Пункт 3
 avg_score_value = 0
 sum_avg_score = 0
 
 for student, student_data in students.items():
+    if student_data['Середній бал'] > 90:
+        print(f"Student: {student} - Average score: {student_data['Середній бал']}")
     if student_data['Середній бал']:
         sum_avg_score += student_data['Середній бал']
         avg_score_value += 1
-
+    if student_data['Номер телефону'] is None:
+        student_data['Номер телефону'] = '+380990652522'
 if avg_score_value > 0:
     average = sum_avg_score / avg_score_value
-
-
-# Пункт 4
-for student, student_data in students.items():
-    if student_data['Номер телефону'] is None:
-        student_family_number = student_data.get('Номер телефону') or '+380990652522'
+    print(f"Average score in the group: {average}")
 
 pass
