@@ -13,7 +13,6 @@ student[outer_dict_key][inner_dict_key]
 
 не забувайте виводити інформаційні повідомлення щодо інформації, яку ви виводите
 """
-from typing import Dict
 
 students = {
     'Іван Петров': {
