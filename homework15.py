@@ -16,10 +16,9 @@ for brand in brands:
         image_response = requests.get(image_url)
         with open('phone.png', mode='wb') as pic_file:
             pic_file.write(image_response.content)
-for prem_brands in brands:
-    if 'description' in prem_brands and 'premium' in prem_brands['description']:
-        if prem_brands['price'] > 800:
-            total_price_prem_brands += prem_brands['price']
+    if 'premium' in brand['description']:
+        if brand['price'] > 800:
+            total_price_prem_brands += brand['price']
 print(f"price for premium brands: {total_price_prem_brands}")
 
 pass
