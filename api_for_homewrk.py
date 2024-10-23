@@ -1,6 +1,5 @@
 import requests
-import json
-from email_util import send_email
+from email_util import send_email, render_html
 
 url = 'https://script.google.com/macros/s/AKfycby6BJceD647XpPdX2Yf5QewhkCnbt4tcefKyJ7CeO8QE88XSsk6kEePZGW8YNYt6ui6hg/exec'
 
@@ -24,13 +23,11 @@ if most_expensive_animal:
     animal_name = most_expensive_animal['animal_name']
     animal_cost = most_expensive_animal['cost_of_caring']
 
-    mail_body = f"""
-    <h1>Інформація про найбільш дорогу в обслуговуванні тварину</h1>
-    <p>Назва тварини: {animal_name}</p>
-    <p>Витрати за обслуговування: {animal_cost}</p>
-    """
-    if most_expensive_animal['is_poison'] is True:
-        mail_body += "<h3>Увага, ця тварина отруйна!"
+    mail_body = render_html('letter_template.html', {
+        'animal_name': animal_name,
+        'animal_cost': animal_cost,
+        'is_poison': most_expensive_animal['is_poison']
+    })
 
     recipients = ['test_hillel_api_mailing@ukr.net']
     mail_subject = 'Інформація про найбільш дорогу в обслуговуванні тварину'
