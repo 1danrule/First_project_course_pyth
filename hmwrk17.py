@@ -3,9 +3,8 @@ def number_check(func):
         result = func(*args, **kwargs)
         if type(result) == int:
             return result + 10
-        if type(result) == float:
+        else:
             return result
-
     return wrapper
 
 
